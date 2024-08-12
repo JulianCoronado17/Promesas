@@ -39,8 +39,10 @@ Promise.any([pErr, pSlow, pFast]).then((value) => {
 // Ejercicio: Consulta a Múltiples Servidores con Timeout
 // Descripción del ejercicio:
 
-// Implementa una función getFastestServerResponse que tome una lista de URLs de servidores y un tiempo máximo de espera en milisegundos.
-// La función debería devolver una promesa que se resuelve con la respuesta del primer servidor que responda, o se rechaza con un error si ninguno responde antes del tiempo de espera.
+// Implementa una función getFastestServerResponse que tome una lista de URLs de servidores 
+// y un tiempo máximo de espera en milisegundos.
+// La función debería devolver una promesa que se resuelve con la respuesta del 
+// primer servidor que responda, o se rechaza con un error si ninguno responde antes del tiempo de espera.
 // Instrucciones:
 
 // Implementa la función getFastestServerResponse.
