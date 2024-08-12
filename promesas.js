@@ -17,6 +17,19 @@ Promise.all([p1, p2, p3]).then((values) => {
 
 
 
+/*Ejercicio: Consulta a Múltiples Servidores con Timeout
+Descripción del ejercicio:
+
+Implementa una función getFastestServerResponse que tome una lista de URLs de servidores
+y un tiempo máximo de espera en milisegundos.
+La función debería devolver una promesa que se resuelve con la respuesta del primer servidor 
+que responda, o se rechaza con un error si ninguno responde antes del tiempo de espera.
+Instrucciones:
+
+Implementa la función getFastestServerResponse.
+Usa Promise.race para manejar la consulta a los servidores y el timeout.
+Maneja tanto el éxito como el error correctamente.*/
+
 function getFastestServerResponse(urls, timeout) {
     // Crea una promesa que se rechaza después del tiempo de espera especificado.
     const timeoutPromise = new Promise((_, reject) =>
@@ -47,5 +60,6 @@ getFastestServerResponse(servers, timeout)
     .then(response => console.log('Respuesta recibida:', response))
     .catch(error => console.error('Error:', error.message));
 
-    
+/*Resultado esperado, que la funcion devuelva la promesa que se resuelve con la respuesta del primer servidor que responda,
+o que rechaze si se pasa del tiempo de espera*/
 
