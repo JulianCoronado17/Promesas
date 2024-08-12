@@ -69,5 +69,6 @@ getFastestServerResponse(servers, timeout)
     .then(response => console.log('Respuesta recibida:', response))
     .catch(error => console.error('Error:', error.message));
 
-    
+/*Resultado esperado, que la funcion devuelva la promesa que se resuelve con la respuesta del primer servidor que responda,
+o que rechaze si se pasa del tiempo de espera*/
 
