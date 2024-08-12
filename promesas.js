@@ -17,6 +17,28 @@ Promise.all([p1, p2, p3]).then((values) => {
 
 
 
+/* Promise.any*/
+function any(){
+const pErr = new Promise((resolve, reject) => {
+    reject("Always fails");
+});const pSlow = new Promise((resolve, reject) => {
+    setTimeout(resolve, 500, "Done eventually");
+});
+const pFast = new Promise((resolve, reject) => {
+    setTimeout(resolve, 100, "Done quick");
+});
+
+Promise.any([pErr, pSlow, pFast]).then((value) => {
+    console.log(value);
+    // pFast fulfills first
+});
+  // Logs:
+  // Done quick
+}
+
+
+
+
 function getFastestServerResponse(urls, timeout) {
     // Crea una promesa que se rechaza después del tiempo de espera especificado.
     const timeoutPromise = new Promise((_, reject) =>
