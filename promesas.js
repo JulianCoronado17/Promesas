@@ -27,25 +27,35 @@ Promise();
 
 
 
+// Definimos una función llamada any que contiene el código para trabajar con promesas.
+function any() {
+    // Creamos una promesa que siempre falla (se rechaza) con el valor "Always fails".
+    const pErr = new Promise((resolve, reject) => {
+        reject("Always fails");
+    });
 
-/* Promise.any*/
-function any(){
-const pErr = new Promise((resolve, reject) => {
-    reject("Always fails");
-});const pSlow = new Promise((resolve, reject) => {
-    setTimeout(resolve, 500, "Done eventually");
-});
-const pFast = new Promise((resolve, reject) => {
-    setTimeout(resolve, 100, "Done quick");
-});
+    // Creamos una promesa que se resolverá después de 500 milisegundos con el valor "Done eventually".
+    const pSlow = new Promise((resolve, reject) => {
+        setTimeout(resolve, 500, "Done eventually");
+    });
 
-Promise.any([pErr, pSlow, pFast]).then((value) => {
-    console.log(value);
-    // pFast fulfills first
-});
-  // Logs:
-  // Done quick
+    // Creamos una promesa que se resolverá después de 100 milisegundos con el valor "Done quick".
+    const pFast = new Promise((resolve, reject) => {
+        setTimeout(resolve, 100, "Done quick");
+    });
+
+    // Utilizamos Promise.any para esperar a que al menos una de las promesas se resuelva.
+    // Promise.any se resolverá con el primer valor que no sea una promesa rechazada.
+    // Si todas las promesas se rechazan, Promise.any se rechaza con un AggregateError.
+    Promise.any([pErr, pSlow, pFast]).then((value) => {
+        // Se imprime el valor de la primera promesa que se resuelve exitosamente.
+        console.log(value); // Esperamos que esto imprima: "Done quick"
+    });
 }
+
+// Llamamos a la función any para ejecutar el código.
+any();
+
 
 // Ejercicio: Consulta a Múltiples Servidores con Timeout
 // Descripción del ejercicio:
