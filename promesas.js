@@ -1,19 +1,30 @@
 
 
+// Definimos una función llamada Promise que contiene el código para trabajar con promesas.
+function Promise() {
+    // Creamos una promesa que ya está resuelta con el valor 3.
+    var p1 = Promise.resolve(3);
 
-/* Promise.all*/
+    // Definimos una variable p2 que no es una promesa, sino un número entero.
+    var p2 = 1337;
 
-function Promise (){
-var p1 = Promise.resolve(3);
-var p2 = 1337;
-var p3 = new Promise((resolve, reject) => {
-    setTimeout(resolve, 100, "foo");
-});
+    // Creamos una nueva promesa p3 que se resolverá después de 100 milisegundos con el valor "foo".
+    var p3 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 100, "foo");
+    });
 
-Promise.all([p1, p2, p3]).then((values) => {
-  console.log(values); // [3, 1337, "foo"]
-});
+    // Utilizamos Promise.all para esperar a que todas las promesas se resuelvan y manejar sus resultados.
+    // Dado que p2 no es una promesa, se convierte automáticamente en una promesa resuelta con su valor.
+    // Por lo tanto, Promise.all espera a que p1 y p3 se resuelvan, y también considera a p2 como un valor ya resuelto.
+    Promise.all([p1, p2, p3]).then((values) => {
+        // Se imprime el array con los valores de todas las promesas y valores no-promesa que se pasaron.
+        console.log(values); // Esperamos que esto imprima: [3, 1337, "foo"]
+    });
 }
+
+// Llamamos a la función Promise para ejecutar el código.
+Promise();
+
 
 
 
